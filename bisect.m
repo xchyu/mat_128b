@@ -4,7 +4,7 @@ format long
 fa = f(a); 			%% compute initial values of f(a) and f(b)
 fb = f(b); 
 
-if  sign(fa) == sign(fb)	%% sanity check: f(a) and f(b) must have different
+if  sign(fa) == sign(fb)	%%%% sanity check: f(a) and f(b) must have different
 				%% signs
 				%% 
 				%% the error function prints an error message and
