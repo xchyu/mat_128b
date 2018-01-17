@@ -1,0 +1,66 @@
+function c = newton(x0, delta)
+%% Math 464   Autumn 06
+%% 	
+%% Remember that the function statement must be at the top of 
+%% your m-file! Comments come after the function statement.
+%%
+%%
+%% newton.m
+%% 
+%% Implements Newton's method
+%%
+%% Input: 	x0	initial guess for the root of f
+%% 		delta	the tolerance/accuracy we desire
+%% 
+%% Output:	c 	the approxmiation to the root of f
+%% 
+%% Syntax:	newton(x0, delta)
+%%
+%% Notes:  
+%% 		1. Don't use eps as a variable.  eps is an internal
+%% 			MATLAB routine in some versions of MATLAB.
+%%		2. The code defining f and fprime comes after the code 
+%%			defining newton, since newton depends on f and
+%%                      fprime.
+%%		3. By default, MATLAB only displays 5 digits.  You can
+%%			change this by issuing the command "format long e".
+%%			See "help format" for more details.
+%%
+digits(32)
+
+c = x0;    
+fc = f(x0);                   
+fprintf('initial guess:  c=%d, fc=%d\n',c,fc)
+if abs(fc) <= delta             %% check to see if initial guess satisfies
+  return;                       %% convergence criterion.
+end;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                       %%
+%% main routine                                                          %%
+%%                                                                       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+while (abs(fc) > delta)
+  fpc = fprime(c);        
+
+  if fpc==0                    %% if fprime is 0, abort.
+    error('fprime is 0')        %% the error function prints message and exits
+  end
+
+  c = c - fc/fpc;               %% Newton step
+  fc = f(c);
+  fprintf('   c=%d, fc=%d\n',c,fc)
+end
+%%
+%% put subroutines here
+%%
+%%
+function fx = f(x)
+	fx = (5-x)*exp(x) - 5;         %% Enter your function here.
+	return;
+function fprimex = fprime(x)
+	fprimex = (5-x)*exp(x) - exp(x); %% Enter the derivative
+                             %% of your function here.
+	return;
+    function fppx = fdoubl
