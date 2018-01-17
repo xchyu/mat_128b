@@ -1,22 +1,5 @@
 function c = bisect(a, b, delta)
 format long
-%% Input: 	a 	the left endpoint of the interval
-%% 		b 	the right endpoint of the interval
-%% 		delta	the tolerance/accuracy we desire
-%%
-%% Output:	c 	the approxmiation to the root of f
-%% 
-%% Syntax:	bisect(a, b, delta)
-%%
-%% Notes:  
-%% 		1. Don't use eps as a variable.  eps is an internal
-%% 			MATLAB routine in some versions of MATLAB.
-%%		2. The code defining f comes after the code defining
-%%			bisect, since bisect depends on f.
-%%		3. By default, MATLAB only displays 5 digits.  You can
-%%			change this by issuing the command "format long".
-%%			See "help format" for more details.
-%%
 
 fa = f(a); 			%% compute initial values of f(a) and f(b)
 fb = f(b); 
