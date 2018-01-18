@@ -4,7 +4,7 @@ format long
 fa = f(a); 			%% compute initial values of f(a) and f(b)
 fb = f(b); 
 
-if  sign(fa) == sign(fb)	%%%% sanity check: f(a) and f(b) must have different
+if  sign(fa) == sign(fb)	%%clc%% sanity check: f(a) and f(b) must have different
 				%% signs
 				%% 
 				%% the error function prints an error message and
@@ -18,7 +18,7 @@ fprintf('   initial interval:  a=%d, b=%d, fa=%d, fb=%d\n',a,b,fa,fb)
 %% main routine                                                          %%
 %%                                                                       %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+count = 0;
 while ( abs(b - a) > 2*delta )	%% While the size of the interval is
 				%% larger than the tolerance
 
@@ -38,10 +38,11 @@ while ( abs(b - a) > 2*delta )	%% While the size of the interval is
 				%% Repeat the algorithm on the new interval
         seg = b - a;
         root = (b+a)/2;
+        count= count + 1;
         fprintf('   a=%d, b=%d, f(a)=%d, f(b)=%d, interval length = %d \n',a,b,fa,fb,seg);
 end
 
-fprintf('   approximate zero c = %.8f, f(c) = %d', root, f(root));
+fprintf('   approximate zero c = %.8f, f(c) = %d, number of iterations = %d', root, f(root), count);
 %%
 %% put subroutines here
 %%

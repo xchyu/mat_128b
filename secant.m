@@ -45,26 +45,31 @@ end;
 %% main routine                                                          %%
 %%                                                                       %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+count = 0;
 
-while abs(fc) > delta,
+while abs(fc) > delta
+  count = count + 1;
   fpc = (fx1-fx0)/(x1-x0);      %% this is the secant approx to f'.
 
-  if fpc==0,                    %% if fprime is 0, abort.
+  if fpc==0                    %% if fprime is 0, abort.
     error('fprime is 0')        %% the error function prints message and exits
   end;
 
   x0 = x1;  fx0 = fx1;             %% save previous iterate
   x1 = x1 - fx1/fpc;               %% secant step
+ 
   fx1 = f(x1);
-  if abs(fx1) < abs(fx0),          %% store best approx to root in c.
+  if abs(fx1) < abs(fx0)          %% store best approx to root in c.
     c = x1;  fc = fx1;
+    err = c - 4.965114231744276;
   else
     c = x0;  fc = fx0;
+    err = c - 4.965114231744276;
   end;
-  fprintf('   x0=%d, x1=%d, fx0=%d, fx1=%d, fpc = %d, accuracy = %d \n',x0,x1,fx0,fx1,fpc, vpa(x1 - x0))
+  fprintf('   x0=%d, x1=%d, fx0=%d, fx1=%d, err = %d \n',x0,x1,fx0,fx1,err)
 end;
 %%
-%% put subroutines here
+fprintf('   approximate zero c = %.10f, f(c) = %d, number of iterations = %d', c, fc, count);
 %%
 %%
 function fx = f(x)

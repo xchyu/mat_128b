@@ -4,11 +4,11 @@ digits(32)
 
 c = x0;    
 fc = f(x0);                   
-fprintf('initial guess:  c=%d, fc=%d\n',c,fc)
+fprintf('   initial guess:  c=%d, fc=%d\n',c,fc)
 if abs(fc) <= delta             %% check to see if initial guess satisfies
   return;                       %% convergence criterion.
 end;
-
+count = 0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                       %%
 %% main routine                                                          %%
@@ -23,12 +23,13 @@ while (abs(fc) > delta)
   end
   temp = c;
   c = c - fc/fpc;               %% Newton step
-  err = abs(c -temp);
+  err = abs(temp -4.965114231744276);
   fc = f(c);
   fprintf('   c=%.14f, fc=%d, err = %d\n',c,fc,err)
+  count = count + 1;
 end
 %%
-%% put subroutines here
+fprintf('   approximate zero c = %.10f, f(c) = %d, number of iterations = %d', c, f(c), count);
 %%
 %%
 fprime(5)
